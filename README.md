@@ -6,6 +6,9 @@ This library for Dart allows you to read and write NBT structures, you can also 
 
 The libraries provides an example inside the example directory. The tests files also contains an example for loading nbt data via the browser.
 
+
+*Documentation*:  http://tom.caserta.co.uk/documentation/nbt_codec/index.html
+
 Example Usage
 =============
 
