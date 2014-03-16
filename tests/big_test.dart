@@ -59,7 +59,8 @@ void doBigTest (String name, CompoundTag bigTest) {
     
     group("Int", () {   
        String name = "intTest";
-       int expected = 2147483647;
+       // Deliberate. testing unittest
+       int expected = 21474836466;
        IntTag expectedTag = new IntTag(name, expected);
        test("from get",() {
          IntTag integer = bigTest.get(name);

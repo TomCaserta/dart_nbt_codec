@@ -49,7 +49,6 @@ Tag readNBT (dynamic byteData, { CompressionType compressionType: CompressionTyp
     inputData = new DataInput.fromGZip(byteData);
   }
   else throw new UnsupportedError("Compression type unknown");
-  print(inputData.data);
   return Tag.readNamedTag(inputData);
 }
 
