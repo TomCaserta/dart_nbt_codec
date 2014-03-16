@@ -71,4 +71,14 @@ class DataOutput {
   List<int> getBytes () {
     return data;
   }
+  
+  List<int> getBytesGZip () {
+    GZipEncoder ginf = new GZipEncoder();
+    return ginf.encode(data);
+  }
+  
+  List<int> getBytesZLib () {
+    ZLibEncoder zenc = new ZLibEncoder();
+    return zenc.encode(data);
+  }
 }

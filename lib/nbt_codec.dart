@@ -53,8 +53,17 @@ Tag readNBT (dynamic byteData, { CompressionType compressionType: CompressionTyp
   return Tag.readNamedTag(inputData);
 }
 
-List<int> writeNBT (Tag tag) {
+List<int> writeNBT (Tag tag, { CompressionType compressionType: CompressionType.NONE }) {
   DataOutput dos = new DataOutput();
   Tag.writeNamedTag(tag, dos);
-  return dos.getBytes();
+  if (compressionType == CompressionType.NONE){
+    return dos.getBytes();  
+  }
+  else if (compressionType == CompressionType.Z_LIB) {
+    return dos.getBytesZLib();  
+  }
+  else if (compressionType == CompressionType.G_ZIP) {
+    return dos.getBytesGZip();  
+  }
+  else throw new UnsupportedError("Compression type unknown");
 }
