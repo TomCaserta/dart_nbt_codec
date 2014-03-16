@@ -16,7 +16,7 @@ class ByteArrayTag extends Tag {
     dis.readFully(data);
   }
   
-  int get ID => Tag.TAG_Byte_Array;
+  int get ID => TagType.TAG_Byte_Array;
   
   Map toJson () {
     return super.toJson()..addAll({ "data": data });

@@ -5,7 +5,7 @@ class EndTag extends Tag {
   void load (DataInput dis) {}
   void write (DataOutput dos) {}
   
-  int get ID => Tag.TAG_End;
+  int get ID => TagType.TAG_End;
    
   Tag copy () {
     return new EndTag();

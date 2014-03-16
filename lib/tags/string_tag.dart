@@ -17,7 +17,7 @@ class StringTag extends Tag {
     data = dis.readUTF();
   }
   
-  int get ID => Tag.TAG_String;
+  int get ID => TagType.TAG_String;
   
   Map toJson () {
     return super.toJson()..addAll({ "data": data });

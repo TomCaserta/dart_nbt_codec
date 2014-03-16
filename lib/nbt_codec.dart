@@ -7,6 +7,7 @@ import "dart:convert";
 import "dart:typed_data";
 import "hashbuilder/hashbuilder.dart";
 
+part 'tags/tag_types.dart';
 part 'tags/tag.dart';
 part 'tags/byte_array_tag.dart';
 part 'tags/byte_tag.dart';

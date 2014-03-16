@@ -1,35 +1,36 @@
 part of nbt_codec;
 
-// TO/DO: Remove once all methods are implemented
-//@proxy
 abstract class Tag {
-  static const int TAG_End = 0x00;
-  static const int TAG_Byte = 0x01;
-  static const int TAG_Short = 0x02;
-  static const int TAG_Int = 0x03;
-  static const int TAG_Long = 0x04;
-  static const int TAG_Float = 0x05;
-  static const int TAG_Double = 0x06;
-  static const int TAG_Byte_Array = 0x07;
-  static const int TAG_String = 0x08;
-  static const int TAG_List = 0x09;
-  static const int TAG_Compound = 0x0A;
-  static const int TAG_Int_Array = 0x0B;
   
   String _name;
+  
+  /// Gets the tag type for this tag
   int get ID;
-  
-  void write(DataOutput dos);
-  void load (DataInput dis);
-  
-  String toString() {
-    return JSON.encode(toJson());
-  }
   
   Tag (String this._name) {
     if (this._name == null) this._name = "";
   }
   
+  /***
+   * Writes the Tag data to the DataOutput [dos]
+   */
+  void write(DataOutput dos);
+  
+  /***
+   * Loads the Tag data from the DataInput [dis]
+   */
+  void load (DataInput dis);
+  
+  /***
+   * Encodes the object and returns a json string
+   */
+  String toString() {
+    return JSON.encode(toJson());
+  }
+    
+  /***
+   * Converts the Tag object to a json encodable map
+   */
   Map toJson () {
     return { "TAG_Type_Name": getTagName(ID), "ID": ID, "name": name };
   }
@@ -50,6 +51,7 @@ abstract class Tag {
     }
     return true;
   }
+  
   int get hashCode {
    HashBuilder hb = new HashBuilder();
    hb.add(ID);
@@ -57,6 +59,9 @@ abstract class Tag {
    return hb.getHash();   
   }
   
+  /***
+   * Sets the tag name
+   */
   set name (String name) {
     if (name == null) {
       _name = "";
@@ -66,11 +71,18 @@ abstract class Tag {
     }
   }
   
+  /***
+   * Gets the tag name
+   */
   String get name => _name;
   
+  /***
+   * Read a named tag (Most likely CompoundTag) from the DataInput [dis]
+   * and returns the tag.
+   */
   static Tag readNamedTag (DataInput dis) {
     int type = dis.readByte();
-    if (type == Tag.TAG_End) {
+    if (type == TagType.TAG_End) {
       return new EndTag();
     }
     
@@ -81,72 +93,85 @@ abstract class Tag {
     return tag;
   }
   
+  /***
+   * Writes the named tag to the DataOutput [dos]
+   */
   static writeNamedTag (Tag tag, DataOutput dos) {
     dos.writeByte(tag.ID);
-    if (tag.ID == Tag.TAG_End) return;
+    if (tag.ID == TagType.TAG_End) return;
     dos.writeUTF(tag.name);
     tag.write(dos);
   }  
   
+  /*** 
+   * Creates a new tag from the TagType [type] and given [name]
+   */
   static Tag newTag (int type, String name) {
     switch (type) {
-      case TAG_End:
+      case TagType.TAG_End:
         return new EndTag();
-      case TAG_Byte:
+      case TagType.TAG_Byte:
         return new ByteTag(name);
-      case TAG_Short:
+      case TagType.TAG_Short:
         return new ShortTag(name);
-      case TAG_Int:
+      case TagType.TAG_Int:
         return new IntTag(name);
-      case TAG_Long: 
+      case TagType.TAG_Long: 
         return new LongTag(name);
-      case TAG_Float:
+      case TagType.TAG_Float:
         return new FloatTag(name);
-      case TAG_Double:
+      case TagType.TAG_Double:
         return new DoubleTag(name);
-      case TAG_Byte_Array:
+      case TagType.TAG_Byte_Array:
         return new ByteArrayTag(name);
-      case TAG_Int_Array:
+      case TagType.TAG_Int_Array:
         return new IntArrayTag(name);
-      case TAG_String:
+      case TagType.TAG_String:
         return new StringTag(name);
-      case TAG_List:
+      case TagType.TAG_List:
         return new ListTag<Tag>(name);
-      case TAG_Compound:
+      case TagType.TAG_Compound:
         return new CompoundTag(name);
     }
     return null;
   }
   
+  /***
+   * Converts the given TagType [type] to the string representation
+   */
   static String getTagName (int type) {
     switch (type) {
-      case TAG_End:
+      case TagType.TAG_End:
         return "TAG_End";
-      case TAG_Byte:
+      case TagType.TAG_Byte:
         return "TAG_Byte";
-      case TAG_Short:
+      case TagType.TAG_Short:
         return "TAG_Short";
-      case TAG_Int:
+      case TagType.TAG_Int:
         return "TAG_Int";
-      case TAG_Long: 
+      case TagType.TAG_Long: 
         return "TAG_Long";
-      case TAG_Float:
+      case TagType.TAG_Float:
         return "TAG_Float";
-      case TAG_Double:
+      case TagType.TAG_Double:
         return "TAG_Double";
-      case TAG_Byte_Array:
+      case TagType.TAG_Byte_Array:
         return "TAG_Byte_Array";
-      case TAG_Int_Array:
+      case TagType.TAG_Int_Array:
         return "TAG_Int_Array";
-      case TAG_String:
+      case TagType.TAG_String:
         return "TAG_String";
-      case TAG_List:
+      case TagType.TAG_List:
         return "TAG_List";
-      case TAG_Compound:
+      case TagType.TAG_Compound:
         return "TAG_Compound";
     }
     return "UNKNOWN";
   }
   
+  /***
+   * Copies [this] and returns a new Tag
+   * Tag is not the same tag in memory as [this]
+   */
   Tag copy();
 }

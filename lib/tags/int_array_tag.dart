@@ -26,7 +26,7 @@ class IntArrayTag extends Tag {
     }
   }
   
-  int get ID => Tag.TAG_Int_Array;
+  int get ID => TagType.TAG_Int_Array;
    
   int get hashCode {
    HashBuilder hb = new HashBuilder();

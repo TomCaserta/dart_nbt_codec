@@ -13,7 +13,7 @@ class DoubleTag extends Tag {
     data = dis.readDouble();
   }
   
-  int get ID => Tag.TAG_Double;
+  int get ID => TagType.TAG_Double;
   
   Map toJson () {
     return super.toJson()..addAll({ "data": data });

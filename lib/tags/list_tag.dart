@@ -28,7 +28,7 @@ class ListTag<T extends Tag> extends Tag {
     }
   }
   
-  int get ID => Tag.TAG_List;
+  int get ID => TagType.TAG_List;
   
   Map toJson () {
     return super.toJson()..addAll({ "list_type": type, "list_type_name": Tag.getTagName(type), "list": list });

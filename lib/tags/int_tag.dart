@@ -17,7 +17,7 @@ class IntTag extends Tag {
     return super.toJson()..addAll({ "data": data });
   }
   
-  int get ID => Tag.TAG_Int;
+  int get ID => TagType.TAG_Int;
   
   Tag copy () {
     return new IntTag(name, data);

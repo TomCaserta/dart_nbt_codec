@@ -13,7 +13,7 @@ class ShortTag extends Tag {
     this.data = dis.readShort();
   }
   
-  int get ID => Tag.TAG_Short;
+  int get ID => TagType.TAG_Short;
   
   Map toJson () {
     return super.toJson()..addAll({ "data": data });

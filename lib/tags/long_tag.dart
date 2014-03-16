@@ -13,7 +13,7 @@ class LongTag extends Tag {
     data = dis.readLong();
   }
   
-  int get ID => Tag.TAG_Long;
+  int get ID => TagType.TAG_Long;
 
   Map toJson () {
     return super.toJson()..addAll({ "data": data.toInt() });

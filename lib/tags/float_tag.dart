@@ -13,7 +13,7 @@ class FloatTag extends Tag {
     data = dis.readFloat();
   }
   
-  int get ID => Tag.TAG_Float;
+  int get ID => TagType.TAG_Float;
   
   Tag copy () {
     return new FloatTag (name, data);

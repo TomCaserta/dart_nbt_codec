@@ -13,7 +13,7 @@ class ByteTag extends Tag {
     data = dis.readByte();
   }
   
-  int get ID => Tag.TAG_Byte;
+  int get ID => TagType.TAG_Byte;
    
   Map toJson () {
     return super.toJson()..addAll({ "data": data });
