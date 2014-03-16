@@ -1,4 +1,4 @@
-import "packages/unittest/unittest.dart";
+import "package:unittest/unittest.dart";
 import "package:fixnum/fixnum.dart";
 import "package:nbt_codec/nbt_codec.dart";
 void runFunc (Function f) {

@@ -1,6 +1,6 @@
 import "dart:html";
-import "packages/unittest/unittest.dart";
-import "packages/unittest/html_enhanced_config.dart";
+import "package:unittest/unittest.dart";
+import "package:unittest/html_enhanced_config.dart";
 import "big_test.dart";
 import "package:nbt_codec/nbt_codec.dart";
 
