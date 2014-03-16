@@ -17,6 +17,8 @@ local.properties
 .loadpath
 packages/
 pubspec.lock
+docs/
+dartdoc-viewer/
 
 # External tool builders
 .externalToolBuilders/
