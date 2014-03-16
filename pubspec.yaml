@@ -1,9 +1,9 @@
 name: nbt_codec
 version: 0.0.1
-author: Thomas Caserta
+author: Thomas Caserta <tom@caserta.co.uk>
 description: NBT Codec is a Minecraft NBT tag reader and writer that works in both browser and server.
 homepage: https://github.com/TomCaserta/dart_nbt_codec
 dependencies:
-  archive: any
-  collection: any
-  fixnum: any
+  archive: '>=1.0.16 <2.0.0'
+  collection: '>=0.9.1 <0.10.0'
+  fixnum: '>=0.9.0 <0.10.0'
