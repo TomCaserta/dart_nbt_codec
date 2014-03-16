@@ -14,7 +14,7 @@ Long Tags
 
 As this is a bit tricky I felt it deserved its own heading. At the moment due to javascript not being able to handle Int64 values LongTags output as the byte representation.
 
-What this means is, to write and read Long tags you need to provide: a list of 8 bits and endianness (default Big Endian as java + minecraft is big endian).
+What this means is, to write and read Long tags you need to provide: a list of 8 bytes and the endianness (default Big Endian as java + minecraft is big endian).
 
 I have exposed a few helper functions for converting Strings courtesy of Int64 package "fixnum". 
 
