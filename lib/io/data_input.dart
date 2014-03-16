@@ -22,7 +22,8 @@ class DataInput {
   
   DataInput.fromZLib (List<int> zLibBytes) {
     ZLibDecoder decoder = new ZLibDecoder();
-    data = new Uint8List.fromList(decoder.decodeBytes(zLibBytes));
+    List<int> decompressBytes = decoder.decodeBytes(zLibBytes);
+    data = new Uint8List.fromList(decompressBytes);
     view = new ByteData.view(data.buffer);
     _fileLength = data.lengthInBytes;
   }
@@ -81,13 +82,8 @@ class DataInput {
     return view.getInt32(old_offset, endian);
   }
 
-  Int64 readLong([Endianness endian = Endianness.BIG_ENDIAN]) {
-    if (endian == Endianness.BIG_ENDIAN) { 
-      return new Int64.fromBytesBigEndian(readBytes(8));
-    }
-    else {
-      return new Int64.fromBytes(readBytes(8));
-    }
+  List<int> readLong() {
+      return readBytes(8);
   }
   
   double readFloat([Endianness endian = Endianness.BIG_ENDIAN]) {

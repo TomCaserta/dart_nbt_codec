@@ -1,6 +1,8 @@
+
 import "package:unittest/unittest.dart";
 import "package:fixnum/fixnum.dart";
 import "package:nbt_codec/nbt_codec.dart";
+
 void runFunc (Function f) {
   f();
 }
@@ -115,7 +117,7 @@ void doBigTest (String name, CompoundTag bigTest) {
     
     group("Long", () {   
       String name = "longTest";
-      Int64 expected = new Int64(9223372036854775807);
+      List<int> expected = gLongStr("9223372036854775807");
       LongTag expectedTag = new LongTag(name, expected);
       test("from get",() {
         LongTag long = bigTest.get(name);
@@ -129,18 +131,18 @@ void doBigTest (String name, CompoundTag bigTest) {
     
     group("List", () {   
       String name = "listTest (long)";
-      List<LongTag> expected = new List<LongTag>()..addAll([new LongTag(null,new Int64(11)),
-                              new LongTag(null,new Int64(12)),
-                              new LongTag(null,new Int64(13)),
-                              new LongTag(null,new Int64(14)),
-                              new LongTag(null,new Int64(15))]);
+      List<LongTag> expected = new List<LongTag>()..addAll([new LongTag(null,gLong(11)),
+                                                            new LongTag(null,gLong(12)),
+                                                            new LongTag(null,gLong(13)),
+                                                            new LongTag(null,gLong(14)),
+                                                            new LongTag(null,gLong(15))]);
       ListTag<LongTag> expectedTag = new ListTag<LongTag>(name);
       expected.forEach((LongTag tag) { 
         expectedTag.add(tag);
       });
       test("from get",() {
         ListTag list = bigTest.get(name);
-        expect(list, expectedTag);
+        expect(list , expectedTag);
       });
       
       test("from getList", () {
@@ -151,9 +153,9 @@ void doBigTest (String name, CompoundTag bigTest) {
     
     group("List -> Compound", () {   
       String name = "listTest (compound)";
-      ListTag<CompoundTag> expectedTag = new ListTag<CompoundTag>(name);
-      expectedTag.add(new CompoundTag()..putString("name", "Compound tag #0")..putLong("created-on", new Int64(1264099775885)));  
-      expectedTag.add(new CompoundTag()..putString("name", "Compound tag #1")..putLong("created-on", new Int64(1264099775885)));         
+      ListTag expectedTag = new ListTag(name);
+      expectedTag.add(new CompoundTag()..putString("name", "Compound tag #0")..putLong("created-on", gLongStr("1264099775885")));  
+      expectedTag.add(new CompoundTag()..putString("name", "Compound tag #1")..putLong("created-on", gLongStr("1264099775885")));         
       
       test("from get",() {
         ListTag list = bigTest.get(name);

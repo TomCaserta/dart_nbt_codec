@@ -59,10 +59,11 @@ class CompoundTag extends Tag {
   }
   
   /*** 
-   * Puts an integer(64 bits) into the compound
+   * Puts a byte representation of a Long into the compound
+   * Endianness is determined on write or when you retreive
    */
-  void putLong (String name, Int64 long) {
-    _tags[name] = new LongTag(name, long);
+  void putLong (String name, List longBytes) {
+    _tags[name] = new LongTag(name, longBytes);
   }
   
   /*** 
@@ -159,8 +160,8 @@ class CompoundTag extends Tag {
   /***
    * Gets a named long from the compound
    */
-  Int64 getLong (String name) {
-    if (!contains(name)) return new Int64(0);
+  List<int> getLong (String name) {
+    if (!contains(name)) return [0,0,0,0,0,0,0,0];
     return (get(name) as LongTag).data;
   }
   

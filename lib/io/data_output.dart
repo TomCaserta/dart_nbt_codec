@@ -54,10 +54,9 @@ class DataOutput {
     _view.setInt32(0, v, endian);
     write(_buffer.getRange(0, 4).toList());
   }
-  void writeLong(Int64 v, [Endianness endian = Endianness.BIG_ENDIAN]) {
+  void writeLong(List<int> v) {
     // TODO: Check if this messes up in dart2js
-    _view.setInt64(0, v.toInt(), endian);
-    write(_buffer.getRange(0, 8).toList());
+    write(v);
   }
   
   void writeUTF(String s, [Endianness endian = Endianness.BIG_ENDIAN]) {    

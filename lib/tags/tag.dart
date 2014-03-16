@@ -129,7 +129,7 @@ abstract class Tag {
       case TagType.TAG_String:
         return new StringTag(name);
       case TagType.TAG_List:
-        return new ListTag<Tag>(name);
+        return new ListTag(name);
       case TagType.TAG_Compound:
         return new CompoundTag(name);
     }
@@ -167,6 +167,36 @@ abstract class Tag {
         return "TAG_Compound";
     }
     return "UNKNOWN";
+  }
+  
+  static Type getType (int type) {
+    switch (type) {
+      case TagType.TAG_End:
+        return EndTag;
+      case TagType.TAG_Byte:
+        return ByteTag;
+      case TagType.TAG_Short:
+        return ShortTag;
+      case TagType.TAG_Int:
+        return IntTag;
+      case TagType.TAG_Long: 
+        return LongTag;
+      case TagType.TAG_Float:
+        return FloatTag;
+      case TagType.TAG_Double:
+        return DoubleTag;
+      case TagType.TAG_Byte_Array:
+        return ByteArrayTag;
+      case TagType.TAG_Int_Array:
+        return IntArrayTag;
+      case TagType.TAG_String:
+        return StringTag;
+      case TagType.TAG_List:
+        return ListTag;
+      case TagType.TAG_Compound:
+        return CompoundTag;
+    }
+    return Tag;
   }
   
   /***

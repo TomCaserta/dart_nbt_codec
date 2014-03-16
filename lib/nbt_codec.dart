@@ -6,6 +6,7 @@ import "package:collection/equality.dart";
 import "dart:convert";
 import "dart:typed_data";
 import "hashbuilder/hashbuilder.dart";
+import "dart:async";
 
 part 'tags/tag_types.dart';
 part 'tags/tag.dart';
@@ -31,8 +32,9 @@ class CompressionType {
 }
 
 Tag readNBT (dynamic byteData, { CompressionType compressionType: CompressionType.NONE }) {
-  if (byteData is! Uint8List && byteData is! List) throw new ArgumentError("[byteData] must be either Uint8List or List<int>");
+  if (byteData is! Uint8List && byteData is! List && byteData is! ByteBuffer) throw new ArgumentError("[byteData] must be either Uint8List or List<int>");
   DataInput inputData;
+  if (byteData is ByteBuffer) byteData = new Uint8List.view(byteData);
   if (compressionType == CompressionType.NONE){
     Uint8List bData;
     if (byteData is! Uint8List) {
@@ -44,10 +46,10 @@ Tag readNBT (dynamic byteData, { CompressionType compressionType: CompressionTyp
     inputData = new DataInput.fromUint8List(bData);
   }
   else if (compressionType == CompressionType.Z_LIB) {
-    inputData = new DataInput.fromZLib(byteData);
+    inputData = new DataInput.fromZLib(byteData.toList());
   }
   else if (compressionType == CompressionType.G_ZIP) {
-    inputData = new DataInput.fromGZip(byteData);
+    inputData = new DataInput.fromGZip(byteData.toList());
   }
   else throw new UnsupportedError("Compression type unknown");
   return Tag.readNamedTag(inputData);
