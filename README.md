@@ -9,6 +9,24 @@ The libraries provides an example inside the example directory. The tests files 
 
 *Documentation*:  http://tom.caserta.co.uk/documentation/nbt_codec/index.html
 
+Long Tags
+=========
+
+As this is a bit tricky I felt it deserved its own heading. At the moment due to javascript not being able to handle Int64 values LongTags output as the byte representation.
+
+What this means is, to write and read Long tags you need to provide: a list of 8 bits and endianness (default Big Endian as java + minecraft is big endian).
+
+I have exposed a few helper functions for converting Strings courtesy of Int64 package "fixnum". 
+
+```gLongStr(String value) // Returns an Int64 representation of [value]
+
+```gLong(int int32val) // Returns an Int64 representation of an int 32 value.
+
+LongTag has .getHex() .getLong() and .getString() methods too.
+
+If anyone can think of a better way to handle this limitation please open an issue on github.
+
+
 Example Usage
 =============
 

@@ -25,7 +25,7 @@ void main () {
           CompoundTag tag = readNBT(f.readAsBytesSync(), compressionType: CompressionType.G_ZIP);
           print("============================================");
           print(tag.getCompound("Data").getString("LevelName"));
-          print("Last played on: ${new DateTime.fromMillisecondsSinceEpoch(tag.getCompound("Data").getLong("LastPlayed").toInt())}");
+          print("Last played on: ${new DateTime.fromMillisecondsSinceEpoch((tag.getCompound("Data").get("LastPlayed") as LongTag).getLong().toInt())}");
         }
       }    
     });
