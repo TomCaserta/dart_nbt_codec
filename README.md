@@ -18,9 +18,13 @@ What this means is, to write and read Long tags you need to provide: a list of 8
 
 I have exposed a few helper functions for converting Strings courtesy of Int64 package "fixnum". 
 
-```gLongStr(String value) // Returns an Int64 representation of [value]
+```Dart
+gLongStr(String value) // Returns an Int64 representation of [value]
+```
 
-```gLong(int int32val) // Returns an Int64 representation of an int 32 value.
+```Dart
+gLong(int int32val) // Returns an Int64 representation of an int 32 value.
+```
 
 LongTag has .getHex() .getLong() and .getString() methods too.
 
