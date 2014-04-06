@@ -9,10 +9,10 @@ void main () {
     dir = new Directory("${Platform.environment["APPDATA"]}/.minecraft/saves/");
   }
   else if (Platform.isLinux) {
-    dir = new Directory("~/.minecraft/saves/");
+    dir = new Directory("${Platform.environment["HOME"]}/.minecraft/saves/");
   }
   else if (Platform.isMacOS) {
-    dir = new Directory ("~/Library/Application Support/minecraft/saves/");
+    dir = new Directory ("${Platform.environment["HOME"]}/Library/Application Support/minecraft/saves/");
   }
   else throw new UnsupportedError("Sorry I dont know how to find minecraft saves on your platform");
   if (dir.existsSync()) {
