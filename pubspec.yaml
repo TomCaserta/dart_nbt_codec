@@ -5,8 +5,8 @@ description: NBT Codec is a Minecraft NBT tag reader and writer that works in bo
 homepage: https://github.com/TomCaserta/dart_nbt_codec
 documentation: http://tom.caserta.co.uk/documentation/nbt_codec/index.html
 dependencies:
-  archive: '>=1.0.16 <2.0.0'
+  archive: '>=1.0.16'
   browser: any
-  collection: '>=0.9.1 <0.10.0'
-  fixnum: '>=0.9.0 <0.10.0'
+  collection: '>=0.9.1'
+  fixnum: '>=0.9.0'
   unittest: any
