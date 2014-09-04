@@ -1,6 +1,6 @@
 library nbt_codec;
 
-import "io/data.dart";
+import "package:dart_io/dart_io.dart";
 import "package:fixnum/fixnum.dart";
 import "package:collection/equality.dart";
 import "dart:convert";

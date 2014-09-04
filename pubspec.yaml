@@ -8,5 +8,6 @@ dependencies:
   archive: '>=1.0.16 <2.0.0'
   browser: any
   collection: '>=0.9.1 <0.10.0'
+  dart_io: any
   fixnum: '>=0.9.0 <0.10.0'
   unittest: any
